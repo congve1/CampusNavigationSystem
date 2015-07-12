@@ -7,6 +7,7 @@
 #include "CampusNavigationSystemDlg.h"
 #include "afxdialogex.h"
 #include <fstream>
+#include "StartDialog.h"
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -64,15 +65,11 @@ BEGIN_MESSAGE_MAP(CCampusNavigationSystemDlg, CDialog)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
-//	ON_BN_CLICKED(IDC_BUTTON1, &CCampusNavigationSystemDlg::OnBnClickedButton1)
-ON_BN_CLICKED(IDC_BUTTON2, &CCampusNavigationSystemDlg::OnBnClickedButton2)
 ON_WM_CREATE()
 ON_COMMAND(ID_ABOUT, &CCampusNavigationSystemDlg::OnAbout)
 ON_COMMAND(ID_CSTARTPOINT, &CCampusNavigationSystemDlg::OnCstartpoint)
 ON_COMMAND(ID_CENDPOINT, &CCampusNavigationSystemDlg::OnCendpoint)
-//ON_NOTIFY(LVN_ITEMCHANGED, IDC_LIST1, &CCampusNavigationSystemDlg::OnLvnItemchangedList1)
 ON_BN_CLICKED(IDC_BTN_CAL_ROUTE, &CCampusNavigationSystemDlg::OnClickedBtnCalRoute)
-//ON_WM_LBUTTONDOWN()
 END_MESSAGE_MAP()
 
 
@@ -115,6 +112,7 @@ BOOL CCampusNavigationSystemDlg::OnInitDialog()
 			string tmp;
 			file >> tmp;
 			CString strtmp(tmp.c_str());
+			m_locationsName.push_back(strtmp);
 			m_CmbStart.AddString(strtmp);
 			m_CmbEnding.AddString(strtmp);
 		}
@@ -180,23 +178,6 @@ HCURSOR CCampusNavigationSystemDlg::OnQueryDragIcon()
 {
 	return static_cast<HCURSOR>(m_hIcon);
 }
-
-
-
-//void CCampusNavigationSystemDlg::OnBnClickedButton1()
-//{
-//	// TODO: Add your control notification handler code here
-//}
-
-
-void CCampusNavigationSystemDlg::OnBnClickedButton2()
-{
-	// TODO: Add your control notification handler code here
-	CDialog dlg(IDD_ABOUTBOX);
-	dlg.DoModal();
-}
-
-
 int CCampusNavigationSystemDlg::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (CDialog::OnCreate(lpCreateStruct) == -1)
@@ -218,8 +199,8 @@ void CCampusNavigationSystemDlg::OnAbout()
 void CCampusNavigationSystemDlg::OnCstartpoint()
 {
 	// TODO: Add your command handler code here
-	CDialog dlg(IDD_SET_START_POINT);
-	dlg.DoModal();
+	CStartDialog startDialog(NULL, m_locationsName);
+	startDialog.DoModal();
 }
 
 
@@ -229,22 +210,11 @@ void CCampusNavigationSystemDlg::OnCendpoint()
 	CDialog dlg(IDD_SET_END_POINT);
 	dlg.DoModal();
 }
-
-
-//void CCampusNavigationSystemDlg::OnLvnItemchangedList1(NMHDR *pNMHDR, LRESULT *pResult)
-//{
-//	LPNMLISTVIEW pNMLV = reinterpret_cast<LPNMLISTVIEW>(pNMHDR);
-//	// TODO: Add your control notification handler code here
-//	*pResult = 0;
-//}
-
-
 void CCampusNavigationSystemDlg::OnClickedBtnCalRoute()
 {
 	// TODO: Add your control notification handler code here
 	static CClientDC dc(this);
-	
-
+	clearRoute(path, &dc);
 	int nIndex = m_CmbStart.GetCurSel();
 	CString strCBText;
 	m_CmbStart.GetLBText(nIndex, strCBText);
@@ -271,58 +241,30 @@ void CCampusNavigationSystemDlg::OnClickedBtnCalRoute()
 	}
 
 }
-
-
 void CCampusNavigationSystemDlg::printRoute(vector<int> & nodes, CClientDC * dc)
 {
 	bool toLine = false;
+	CPaintDC paintDC(this);	
 	for (int i = nodes.size() - 1; i >= 0; i--) {
 		if (toLine) {
 			dc->LineTo(m_coordinates[nodes[i]]);
 			dc->MoveTo(m_coordinates[nodes[i]]);
-			//简单的延时
-			for (int i = 0; i < 100000; i++) {
-				for (int j = 0; j < 1000; j++) {
-
-				}
-			}
+			Sleep(500);
 		} else {
 			dc->MoveTo(m_coordinates[nodes[i]]);
 			toLine = true;
 		}
 	}
 }
-
-
-//void CCampusNavigationSystemDlg::OnLButtonDown(UINT nFlags, CPoint point)
-//{
-//	// TODO: Add your message handler code here and/or call default
-//	static int i = 0, j = 0;
-//	m_coordinates[i][j] = point;
-//	i++; 
-//	j++;
-//	std::fstream file("coordinates.txt", std::ios::out | std::ios::app);
-//	file << point.x;
-//	file << "\n";
-//	file << point.y;
-//	file << "\n";
-//	file.close();
-//	CDialog::OnLButtonDown(nFlags, point);
-//}
-
-
+/**
+	重绘窗口，清除窗口中的路线
+	InvalidateRect()+UpdateWindow()马上进行窗口重绘
+*/
 void CCampusNavigationSystemDlg::clearRoute(vector<int> nodes,CClientDC * dc)
 {
 	InvalidateRect(NULL, FALSE);
-	/*	bool toLine = false;
-	for (int i = nodes.size() - 1; i >= 0; i--) {
-		if (toLine) {
-			dc->LineTo(m_coordinates[nodes[i]]);
-			dc->MoveTo(m_coordinates[nodes[i]]);
-		} else {
-			dc->MoveTo(m_coordinates[nodes[i]]);
-			toLine = true;
-		}
-	}*/
-
+	UpdateWindow();
 }
+
+
+
