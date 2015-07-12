@@ -7,7 +7,6 @@
 #include "CampusNavigationSystemDlg.h"
 #include "afxdialogex.h"
 #include <fstream>
-#include "StartDialog.h"
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -65,11 +64,12 @@ BEGIN_MESSAGE_MAP(CCampusNavigationSystemDlg, CDialog)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
-ON_WM_CREATE()
-ON_COMMAND(ID_ABOUT, &CCampusNavigationSystemDlg::OnAbout)
-ON_COMMAND(ID_CSTARTPOINT, &CCampusNavigationSystemDlg::OnCstartpoint)
-ON_COMMAND(ID_CENDPOINT, &CCampusNavigationSystemDlg::OnCendpoint)
-ON_BN_CLICKED(IDC_BTN_CAL_ROUTE, &CCampusNavigationSystemDlg::OnClickedBtnCalRoute)
+	ON_BN_CLICKED(IDC_BUTTON2, &CCampusNavigationSystemDlg::OnBnClickedButton2)
+	ON_WM_CREATE()
+	ON_COMMAND(ID_ABOUT, &CCampusNavigationSystemDlg::OnAbout)
+	ON_COMMAND(ID_CSTARTPOINT, &CCampusNavigationSystemDlg::OnCstartpoint)
+	ON_COMMAND(ID_CENDPOINT, &CCampusNavigationSystemDlg::OnCendpoint)
+	ON_BN_CLICKED(IDC_BTN_CAL_ROUTE, &CCampusNavigationSystemDlg::OnClickedBtnCalRoute)
 END_MESSAGE_MAP()
 
 
@@ -112,7 +112,6 @@ BOOL CCampusNavigationSystemDlg::OnInitDialog()
 			string tmp;
 			file >> tmp;
 			CString strtmp(tmp.c_str());
-			m_locationsName.push_back(strtmp);
 			m_CmbStart.AddString(strtmp);
 			m_CmbEnding.AddString(strtmp);
 		}
@@ -178,6 +177,15 @@ HCURSOR CCampusNavigationSystemDlg::OnQueryDragIcon()
 {
 	return static_cast<HCURSOR>(m_hIcon);
 }
+
+void CCampusNavigationSystemDlg::OnBnClickedButton2()
+{
+	// TODO: Add your control notification handler code here
+	CDialog dlg(IDD_ABOUTBOX);
+	dlg.DoModal();
+}
+
+
 int CCampusNavigationSystemDlg::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (CDialog::OnCreate(lpCreateStruct) == -1)
@@ -199,8 +207,8 @@ void CCampusNavigationSystemDlg::OnAbout()
 void CCampusNavigationSystemDlg::OnCstartpoint()
 {
 	// TODO: Add your command handler code here
-	CStartDialog startDialog(NULL, m_locationsName);
-	startDialog.DoModal();
+	CDialog dlg(IDD_SET_START_POINT);
+	dlg.DoModal();
 }
 
 
@@ -210,11 +218,13 @@ void CCampusNavigationSystemDlg::OnCendpoint()
 	CDialog dlg(IDD_SET_END_POINT);
 	dlg.DoModal();
 }
+
 void CCampusNavigationSystemDlg::OnClickedBtnCalRoute()
 {
 	// TODO: Add your control notification handler code here
 	static CClientDC dc(this);
-	clearRoute(path, &dc);
+	
+
 	int nIndex = m_CmbStart.GetCurSel();
 	CString strCBText;
 	m_CmbStart.GetLBText(nIndex, strCBText);
@@ -241,30 +251,25 @@ void CCampusNavigationSystemDlg::OnClickedBtnCalRoute()
 	}
 
 }
+
+
 void CCampusNavigationSystemDlg::printRoute(vector<int> & nodes, CClientDC * dc)
 {
 	bool toLine = false;
-	CPaintDC paintDC(this);	
 	for (int i = nodes.size() - 1; i >= 0; i--) {
 		if (toLine) {
 			dc->LineTo(m_coordinates[nodes[i]]);
 			dc->MoveTo(m_coordinates[nodes[i]]);
-			Sleep(500);
+			//简单的延时
+			Sleep(5000);
 		} else {
 			dc->MoveTo(m_coordinates[nodes[i]]);
 			toLine = true;
 		}
 	}
 }
-/**
-	重绘窗口，清除窗口中的路线
-	InvalidateRect()+UpdateWindow()马上进行窗口重绘
-*/
 void CCampusNavigationSystemDlg::clearRoute(vector<int> nodes,CClientDC * dc)
 {
 	InvalidateRect(NULL, FALSE);
 	UpdateWindow();
 }
-
-
-
