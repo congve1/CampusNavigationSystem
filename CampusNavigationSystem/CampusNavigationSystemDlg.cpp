@@ -6,8 +6,7 @@
 #include "CampusNavigationSystem.h"
 #include "CampusNavigationSystemDlg.h"
 #include "afxdialogex.h"
-#include "CLoadImages.h"
-
+#include <fstream>
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -57,6 +56,8 @@ CCampusNavigationSystemDlg::CCampusNavigationSystemDlg(CWnd* pParent /*=NULL*/)
 void CCampusNavigationSystemDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_CMB_START_POINT, m_CmbStart);
+	DDX_Control(pDX, IDC_CMB_END_POINT, m_CmbEnding);
 }
 
 BEGIN_MESSAGE_MAP(CCampusNavigationSystemDlg, CDialog)
@@ -70,6 +71,8 @@ ON_COMMAND(ID_ABOUT, &CCampusNavigationSystemDlg::OnAbout)
 ON_COMMAND(ID_CSTARTPOINT, &CCampusNavigationSystemDlg::OnCstartpoint)
 ON_COMMAND(ID_CENDPOINT, &CCampusNavigationSystemDlg::OnCendpoint)
 //ON_NOTIFY(LVN_ITEMCHANGED, IDC_LIST1, &CCampusNavigationSystemDlg::OnLvnItemchangedList1)
+ON_BN_CLICKED(IDC_BTN_CAL_ROUTE, &CCampusNavigationSystemDlg::OnClickedBtnCalRoute)
+//ON_WM_LBUTTONDOWN()
 END_MESSAGE_MAP()
 
 
@@ -105,7 +108,27 @@ BOOL CCampusNavigationSystemDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 
 	// TODO: Add extra initialization here
-
+	std::fstream file;
+	file.open("LocationsName.txt", std::ios::in);
+	if (file.is_open()) {
+		while (!file.eof()) {
+			string tmp;
+			file >> tmp;
+			CString strtmp(tmp.c_str());
+			m_CmbStart.AddString(strtmp);
+			m_CmbEnding.AddString(strtmp);
+		}
+	}
+	file.close();
+	file.open("coordinates.txt", std::ios::in);
+	for (int i = 0; i < NUM_OF_VERTICES; i++){
+		
+			file >> m_coordinates[i].x;
+			file >> m_coordinates[i].y;
+		
+	}
+	
+	m_campus.Floyd();
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
 
@@ -149,14 +172,6 @@ void CCampusNavigationSystemDlg::OnPaint()
 	{
 		CDialog::OnPaint();
 	}
-	
-	CStatic * loadMap = (CStatic *)GetDlgItem(IDC_LOADMAP);
-	CRect crect;
-	loadMap->GetClientRect(&crect);
-	int width = crect.Width();
-	int height = crect.Height();
-
-
 }
 
 // The system calls this function to obtain the cursor to display while the user drags
@@ -222,3 +237,92 @@ void CCampusNavigationSystemDlg::OnCendpoint()
 //	// TODO: Add your control notification handler code here
 //	*pResult = 0;
 //}
+
+
+void CCampusNavigationSystemDlg::OnClickedBtnCalRoute()
+{
+	// TODO: Add your control notification handler code here
+	static CClientDC dc(this);
+	
+
+	int nIndex = m_CmbStart.GetCurSel();
+	CString strCBText;
+	m_CmbStart.GetLBText(nIndex, strCBText);
+	USES_CONVERSION;
+	string tmpS(W2A(strCBText));	
+	int startPoint = m_campus.getLocNumber(tmpS);
+	nIndex = m_CmbEnding.GetCurSel();
+	m_CmbEnding.GetLBText(nIndex, strCBText);
+	string tmpE(W2A(strCBText));	
+	int endingPoint = m_campus.getLocNumber(tmpE);
+	path.clear();
+	if (startPoint != endingPoint) {
+		string ansPath;
+		path = m_campus.printShortestPath(startPoint, endingPoint, ansPath);
+		CString shortestLength;
+		shortestLength.Format(_T("%d 米"), m_campus.getShortestRoadLength(startPoint, endingPoint));
+		GetDlgItem(IDC_EDIT_MIN_LENGTH)->SetWindowTextW(shortestLength);
+		CString CAnsPath(ansPath.c_str());
+		GetDlgItem(IDC_EDIT_MIN_ROUTE)->SetWindowTextW(CAnsPath);
+		printRoute(path,&dc);
+
+	} else {
+		MessageBox(_T("起点不能与终点重合"),_T("警告"));
+	}
+
+}
+
+
+void CCampusNavigationSystemDlg::printRoute(vector<int> & nodes, CClientDC * dc)
+{
+	bool toLine = false;
+	for (int i = nodes.size() - 1; i >= 0; i--) {
+		if (toLine) {
+			dc->LineTo(m_coordinates[nodes[i]]);
+			dc->MoveTo(m_coordinates[nodes[i]]);
+			//简单的延时
+			for (int i = 0; i < 100000; i++) {
+				for (int j = 0; j < 1000; j++) {
+
+				}
+			}
+		} else {
+			dc->MoveTo(m_coordinates[nodes[i]]);
+			toLine = true;
+		}
+	}
+}
+
+
+//void CCampusNavigationSystemDlg::OnLButtonDown(UINT nFlags, CPoint point)
+//{
+//	// TODO: Add your message handler code here and/or call default
+//	static int i = 0, j = 0;
+//	m_coordinates[i][j] = point;
+//	i++; 
+//	j++;
+//	std::fstream file("coordinates.txt", std::ios::out | std::ios::app);
+//	file << point.x;
+//	file << "\n";
+//	file << point.y;
+//	file << "\n";
+//	file.close();
+//	CDialog::OnLButtonDown(nFlags, point);
+//}
+
+
+void CCampusNavigationSystemDlg::clearRoute(vector<int> nodes,CClientDC * dc)
+{
+	InvalidateRect(NULL, FALSE);
+	/*	bool toLine = false;
+	for (int i = nodes.size() - 1; i >= 0; i--) {
+		if (toLine) {
+			dc->LineTo(m_coordinates[nodes[i]]);
+			dc->MoveTo(m_coordinates[nodes[i]]);
+		} else {
+			dc->MoveTo(m_coordinates[nodes[i]]);
+			toLine = true;
+		}
+	}*/
+
+}
