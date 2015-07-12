@@ -6,6 +6,8 @@
 #include "CampusNavigationSystem.h"
 #include "CampusNavigationSystemDlg.h"
 #include "afxdialogex.h"
+#include "StartDialog.h"
+#include "EndDialog.h"
 #include <fstream>
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -112,6 +114,7 @@ BOOL CCampusNavigationSystemDlg::OnInitDialog()
 			string tmp;
 			file >> tmp;
 			CString strtmp(tmp.c_str());
+			m_locationsName.push_back(strtmp);
 			m_CmbStart.AddString(strtmp);
 			m_CmbEnding.AddString(strtmp);
 		}
@@ -207,7 +210,7 @@ void CCampusNavigationSystemDlg::OnAbout()
 void CCampusNavigationSystemDlg::OnCstartpoint()
 {
 	// TODO: Add your command handler code here
-	CDialog dlg(IDD_SET_START_POINT);
+	CStartDialog dlg(NULL, m_locationsName);
 	dlg.DoModal();
 }
 
@@ -215,7 +218,7 @@ void CCampusNavigationSystemDlg::OnCstartpoint()
 void CCampusNavigationSystemDlg::OnCendpoint()
 {
 	// TODO: Add your command handler code here
-	CDialog dlg(IDD_SET_END_POINT);
+	CEndDialog dlg(NULL, m_locationsName);
 	dlg.DoModal();
 }
 
@@ -223,8 +226,7 @@ void CCampusNavigationSystemDlg::OnClickedBtnCalRoute()
 {
 	// TODO: Add your control notification handler code here
 	static CClientDC dc(this);
-	
-
+	clearRoute(path, &dc);
 	int nIndex = m_CmbStart.GetCurSel();
 	CString strCBText;
 	m_CmbStart.GetLBText(nIndex, strCBText);
@@ -259,13 +261,13 @@ void CCampusNavigationSystemDlg::printRoute(vector<int> & nodes, CClientDC * dc)
 	for (int i = nodes.size() - 1; i >= 0; i--) {
 		if (toLine) {
 			dc->LineTo(m_coordinates[nodes[i]]);
-			dc->MoveTo(m_coordinates[nodes[i]]);
-			//¼òµ¥µÄÑÓÊ±
-			Sleep(5000);
+			dc->MoveTo(m_coordinates[nodes[i]]);			
 		} else {
 			dc->MoveTo(m_coordinates[nodes[i]]);
 			toLine = true;
 		}
+		if (i != 0)
+			Sleep(500);
 	}
 }
 void CCampusNavigationSystemDlg::clearRoute(vector<int> nodes,CClientDC * dc)

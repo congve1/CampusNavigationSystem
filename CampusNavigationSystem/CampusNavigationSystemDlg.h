@@ -31,11 +31,9 @@ protected:
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()
 public:
-//	afx_msg void OnBnClickedButton1();
 	afx_msg void OnBnClickedButton2();
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnAbout();
-//	CBitmap m_CampusMap;
 private:
 	CBitmap m_campusMap;
 	Graph m_campus;
@@ -43,23 +41,14 @@ private:
 public:
 	afx_msg void OnCstartpoint();
 	afx_msg void OnCendpoint();
-//	afx_msg void OnLvnItemchangedList1(NMHDR *pNMHDR, LRESULT *pResult);
-	
-private:
-	// m_CmbStartPoint;
-	 //m_CmbEndingPoint;
-public:
 	afx_msg void OnClickedBtnCalRoute();
 
 private:
 	CComboBox m_CmbStart;
 	CComboBox m_CmbEnding;
 	CPoint m_coordinates[NUM_OF_VERTICES];
+	vector<CString> m_locationsName;
 	void printRoute(vector<int> & nodes, CClientDC * dc);
 public:
-//	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	void clearRoute(vector<int> nodes, CClientDC * dc);
-private:
-//	CClientDC dc;
-//	CDC *dc;
 };
