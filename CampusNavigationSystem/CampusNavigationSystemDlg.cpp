@@ -5,6 +5,7 @@
 #include "stdafx.h"
 #include "CampusNavigationSystem.h"
 #include "CampusNavigationSystemDlg.h"
+#include "CampusInfoDialog.h"
 #include "afxdialogex.h"
 #include "StartDialog.h"
 #include "EndDialog.h"
@@ -29,7 +30,7 @@ public:
 
 // Implementation
 protected:
-	DECLARE_MESSAGE_MAP()
+	DECLARE_MESSAGE_MAP()	
 };
 
 CAboutDlg::CAboutDlg() : CDialog(CAboutDlg::IDD)
@@ -42,6 +43,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 }
 
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialog)
+	
 END_MESSAGE_MAP()
 
 
@@ -72,6 +74,7 @@ BEGIN_MESSAGE_MAP(CCampusNavigationSystemDlg, CDialog)
 	ON_COMMAND(ID_CSTARTPOINT, &CCampusNavigationSystemDlg::OnCstartpoint)
 	ON_COMMAND(ID_CENDPOINT, &CCampusNavigationSystemDlg::OnCendpoint)
 	ON_BN_CLICKED(IDC_BTN_CAL_ROUTE, &CCampusNavigationSystemDlg::OnClickedBtnCalRoute)
+	ON_COMMAND(ID_CAMPUS_INFO, &CCampusNavigationSystemDlg::OnCampusInfo)
 END_MESSAGE_MAP()
 
 
@@ -274,4 +277,10 @@ void CCampusNavigationSystemDlg::clearRoute(vector<int> nodes,CClientDC * dc)
 {
 	InvalidateRect(NULL, FALSE);
 	UpdateWindow();
+}
+void CCampusNavigationSystemDlg::OnCampusInfo()
+{
+	// TODO: Add your command handler code here
+	CCampusInfoDialog dlg(NULL, m_locationsName);
+	dlg.DoModal();
 }

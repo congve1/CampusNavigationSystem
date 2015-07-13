@@ -103,6 +103,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CampusInfoDialog.h" />
     <ClInclude Include="CampusNavigationSystem.h" />
     <ClInclude Include="CampusNavigationSystemDlg.h" />
     <ClInclude Include="EndDialog.h" />
@@ -113,6 +114,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CampusInfoDialog.cpp" />
     <ClCompile Include="CampusNavigationSystem.cpp" />
     <ClCompile Include="CampusNavigationSystemDlg.cpp" />
     <ClCompile Include="EndDialog.cpp" />

@@ -51,4 +51,5 @@ private:
 	void printRoute(vector<int> & nodes, CClientDC * dc);
 public:
 	void clearRoute(vector<int> nodes, CClientDC * dc);
+	afx_msg void OnCampusInfo();
 };
