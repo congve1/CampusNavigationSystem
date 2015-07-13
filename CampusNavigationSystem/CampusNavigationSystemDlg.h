@@ -5,6 +5,7 @@
 #pragma once
 #include "Graph.h"
 #include "afxwin.h"
+#include "ReadOnlyEdit.h"
 
 // CCampusNavigationSystemDlg dialog
 class CCampusNavigationSystemDlg : public CDialog
@@ -52,4 +53,8 @@ private:
 public:
 	void clearRoute(vector<int> nodes, CClientDC * dc);
 	afx_msg void OnCampusInfo();
+	CString m_minRoute;
+private:
+	CReadOnlyEdit m_editMinLength;
+	CReadOnlyEdit m_editMinRoute;
 };

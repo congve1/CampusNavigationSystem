@@ -45,9 +45,9 @@ vector<int> Graph::printShortestPath(int startPoint, int endPoint, string & ansP
 			if (i != 0 && tmp[i] < 19) {
 				ansPath += " -> ";
 			}
-			if (j % 2 == 0) {
-				ansPath += "\r\n";
-			}
+			//if (j % 2 == 0) {
+			//	ansPath += "\r\n";
+			//}
 		}		
 		
 	}

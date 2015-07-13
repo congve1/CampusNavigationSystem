@@ -53,6 +53,7 @@ END_MESSAGE_MAP()
 
 CCampusNavigationSystemDlg::CCampusNavigationSystemDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(CCampusNavigationSystemDlg::IDD, pParent)
+	, m_minRoute(_T(""))
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
@@ -62,6 +63,9 @@ void CCampusNavigationSystemDlg::DoDataExchange(CDataExchange* pDX)
 	CDialog::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_CMB_START_POINT, m_CmbStart);
 	DDX_Control(pDX, IDC_CMB_END_POINT, m_CmbEnding);
+	DDX_Text(pDX, IDC_EDIT_MIN_ROUTE, m_minRoute);
+	DDX_Control(pDX, IDC_EDIT_MIN_LENGTH, m_editMinLength);
+	DDX_Control(pDX, IDC_EDIT_MIN_ROUTE, m_editMinRoute);
 }
 
 BEGIN_MESSAGE_MAP(CCampusNavigationSystemDlg, CDialog)
@@ -248,7 +252,9 @@ void CCampusNavigationSystemDlg::OnClickedBtnCalRoute()
 		shortestLength.Format(_T("%d รื"), m_campus.getShortestRoadLength(startPoint, endingPoint));
 		GetDlgItem(IDC_EDIT_MIN_LENGTH)->SetWindowTextW(shortestLength);
 		CString CAnsPath(ansPath.c_str());
-		GetDlgItem(IDC_EDIT_MIN_ROUTE)->SetWindowTextW(CAnsPath);
+		m_minRoute.clear();
+		m_minRoute += CAnsPath;
+		UpdateData(FALSE);
 		printRoute(path,&dc);
 
 	} else {

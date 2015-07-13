@@ -108,6 +108,7 @@
     <ClInclude Include="CampusNavigationSystemDlg.h" />
     <ClInclude Include="EndDialog.h" />
     <ClInclude Include="Graph.h" />
+    <ClInclude Include="ReadOnlyEdit.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="StartDialog.h" />
     <ClInclude Include="stdafx.h" />
@@ -119,6 +120,7 @@
     <ClCompile Include="CampusNavigationSystemDlg.cpp" />
     <ClCompile Include="EndDialog.cpp" />
     <ClCompile Include="Graph.cpp" />
+    <ClCompile Include="ReadOnlyEdit.cpp" />
     <ClCompile Include="StartDialog.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include "afxcmn.h"
 using namespace std;
 // CCampusInfoDialog dialog
 
@@ -21,4 +22,13 @@ protected:
 	DECLARE_MESSAGE_MAP()
 private:
 	vector<CString> m_locationNames;
+	virtual void OnOK();
+public:
+	afx_msg void OnClickedBtnExit();
+private:
+	CTabCtrl m_tabControl;
+	CDialog dlg;
+public:
+	virtual BOOL OnInitDialog();
+	afx_msg void OnTcnSelchangeTabCampusInfo(NMHDR *pNMHDR, LRESULT *pResult);
 };
