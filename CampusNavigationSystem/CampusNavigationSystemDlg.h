@@ -6,7 +6,9 @@
 #include "Graph.h"
 #include "afxwin.h"
 #include "ReadOnlyEdit.h"
-
+#include "MyMenu.h"
+#include "MyStaticText.h"
+#include "CampusInfoDialog.h"
 // CCampusNavigationSystemDlg dialog
 class CCampusNavigationSystemDlg : public CDialog
 {
@@ -49,6 +51,12 @@ private:
 	CComboBox m_CmbEnding;
 	CPoint m_coordinates[NUM_OF_VERTICES];
 	vector<CString> m_locationsName;
+	CStatic m_Static5;
+	CStatic m_Static1;
+	CStatic m_Static2;
+	CStatic m_Static3;
+	CStatic m_Static4;
+	CButton m_BtnCalRoute;
 	void printRoute(vector<int> & nodes, CClientDC * dc);
 public:
 	void clearRoute(vector<int> nodes, CClientDC * dc);
@@ -57,4 +65,17 @@ public:
 private:
 	CReadOnlyEdit m_editMinLength;
 	CReadOnlyEdit m_editMinRoute;
+public:
+	static string WCharToAnsi(LPCWSTR pwszSrc);
+	afx_msg void OnExit();
+	virtual BOOL PreTranslateMessage(MSG* pMsg);
+private:
+	CFont m_Font;
+	CMyMenu m_menu;
+	CMyStaticText m_staticTexts[NUM_OF_BUILDINGS];
+public:
+	afx_msg void OnMeasureItem(int nIDCtl, LPMEASUREITEMSTRUCT lpMeasureItemStruct);
+	afx_msg void OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct);
+	
+	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
 };

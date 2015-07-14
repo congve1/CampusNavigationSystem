@@ -42,10 +42,22 @@
     <ClInclude Include="EndDialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ReadOnlyEdit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="CampusInfoDialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ReadOnlyEdit.h">
+    <ClInclude Include="InfoDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyPictureControl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyStaticText.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -72,6 +84,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ReadOnlyEdit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InfoDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyPictureControl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyStaticText.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -114,6 +138,126 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\map1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\2-1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\2-2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\2-3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\2-4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\3-1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\6-1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\6-2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\6-3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\6-4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\6-5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\6-6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\6-7.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\6-9.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\7-1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\7-2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\8-1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\8-2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\9-1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\9-2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\10-1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\10-2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\11-1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\11-2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\12.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\13.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\14-1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\14-2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\14-3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\14-4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\15.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\16.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\17.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\18.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\19-1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\19-2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\19-3.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

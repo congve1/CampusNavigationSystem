@@ -10,11 +10,12 @@ class CReadOnlyEdit : public CEdit
 public:
 	CReadOnlyEdit();
 	virtual ~CReadOnlyEdit();
-
 protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnSetFocus(CWnd* pOldWnd);
+private:
+	CFont m_Font;
 };
 
 
