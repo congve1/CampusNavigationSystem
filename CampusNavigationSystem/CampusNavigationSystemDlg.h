@@ -75,7 +75,26 @@ private:
 	CMyStaticText m_staticTexts[NUM_OF_BUILDINGS];
 public:
 	afx_msg void OnMeasureItem(int nIDCtl, LPMEASUREITEMSTRUCT lpMeasureItemStruct);
-	afx_msg void OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct);
-	
+	afx_msg void OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct);	
 	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
+	afx_msg void OnDblclkBuilding1();
+	afx_msg void OnDblclkBuilding10();
+//	afx_msg void OnClickedBuilding11();
+	afx_msg void OnDblclkBuilding11();
+	afx_msg void OnDblclkBuilding12();
+	afx_msg void OnDblclkBuilding13();
+	afx_msg void OnDblclkBuilding14();
+	afx_msg void OnDblclkBuilding15();
+	afx_msg void OnDblclkBuilding16();
+	afx_msg void OnDblclkBuilding17();
+	afx_msg void OnDblclkBuilding18();
+	afx_msg void OnDblclkBuilding19();
+	afx_msg void OnDblclkBuilding2();
+	afx_msg void OnDblclkBuilding3();
+	afx_msg void OnDblclkBuilding4();
+	afx_msg void OnDblclkBuilding5();
+	afx_msg void OnDblclkBuilding6();
+	afx_msg void OnDblclkBuilding7();
+	afx_msg void OnDblclkBuilding8();
+	afx_msg void OnDblclkBuilding9();
 };

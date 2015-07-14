@@ -30,7 +30,8 @@ void CMyStaticText::SetFont()
 }
 void CMyStaticText::OpenDialog(vector<CString> & names, int nIndex)
 {
-
+	CCampusInfoDialog dlg(NULL,names,nIndex);
+	dlg.DoModal();
 }
 
 // CMyStaticText message handlers

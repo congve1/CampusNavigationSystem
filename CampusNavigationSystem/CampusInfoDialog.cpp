@@ -107,6 +107,7 @@ BOOL CCampusInfoDialog::OnInitDialog()
 	}
 	file.close();
 	m_dialogs[m_StartPage].ShowWindow(SW_SHOW);
+	m_tabControl.SetCurSel(m_StartPage);
 	return TRUE;  // return TRUE unless you set the focus to a control
 				  // EXCEPTION: OCX Property Pages should return FALSE
 }

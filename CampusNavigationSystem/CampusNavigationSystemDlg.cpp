@@ -110,6 +110,25 @@ BEGIN_MESSAGE_MAP(CCampusNavigationSystemDlg, CDialog)
 	ON_WM_MEASUREITEM()
 	ON_WM_DRAWITEM()
 	ON_WM_CTLCOLOR()
+	ON_STN_DBLCLK(IDC_Building1, &CCampusNavigationSystemDlg::OnDblclkBuilding1)
+	ON_STN_DBLCLK(IDC_Building10, &CCampusNavigationSystemDlg::OnDblclkBuilding10)
+	ON_STN_DBLCLK(IDC_Building11, &CCampusNavigationSystemDlg::OnDblclkBuilding11)
+	ON_STN_DBLCLK(IDC_Building12, &CCampusNavigationSystemDlg::OnDblclkBuilding12)
+	ON_STN_DBLCLK(IDC_Building13, &CCampusNavigationSystemDlg::OnDblclkBuilding13)
+	ON_STN_DBLCLK(IDC_Building14, &CCampusNavigationSystemDlg::OnDblclkBuilding14)
+	ON_STN_DBLCLK(IDC_Building15, &CCampusNavigationSystemDlg::OnDblclkBuilding15)
+	ON_STN_DBLCLK(IDC_Building16, &CCampusNavigationSystemDlg::OnDblclkBuilding16)
+	ON_STN_DBLCLK(IDC_Building17, &CCampusNavigationSystemDlg::OnDblclkBuilding17)
+	ON_STN_DBLCLK(IDC_Building18, &CCampusNavigationSystemDlg::OnDblclkBuilding18)
+	ON_STN_DBLCLK(IDC_Building19, &CCampusNavigationSystemDlg::OnDblclkBuilding19)
+	ON_STN_DBLCLK(IDC_Building2, &CCampusNavigationSystemDlg::OnDblclkBuilding2)
+	ON_STN_DBLCLK(IDC_Building3, &CCampusNavigationSystemDlg::OnDblclkBuilding3)
+	ON_STN_DBLCLK(IDC_Building4, &CCampusNavigationSystemDlg::OnDblclkBuilding4)
+	ON_STN_DBLCLK(IDC_Building5, &CCampusNavigationSystemDlg::OnDblclkBuilding5)
+	ON_STN_DBLCLK(IDC_Building6, &CCampusNavigationSystemDlg::OnDblclkBuilding6)
+	ON_STN_DBLCLK(IDC_Building7, &CCampusNavigationSystemDlg::OnDblclkBuilding7)
+	ON_STN_DBLCLK(IDC_Building8, &CCampusNavigationSystemDlg::OnDblclkBuilding8)
+	ON_STN_DBLCLK(IDC_Building9, &CCampusNavigationSystemDlg::OnDblclkBuilding9)
 END_MESSAGE_MAP()
 
 
@@ -219,7 +238,6 @@ void CCampusNavigationSystemDlg::OnPaint()
 		CPaintDC dc(this); // device context for painting
 
 		SendMessage(WM_ICONERASEBKGND, reinterpret_cast<WPARAM>(dc.GetSafeHdc()), 0);
-
 		// Center icon in client rectangle
 		int cxIcon = GetSystemMetrics(SM_CXICON);
 		int cyIcon = GetSystemMetrics(SM_CYICON);
@@ -235,6 +253,7 @@ void CCampusNavigationSystemDlg::OnPaint()
 	{
 		CDialog::OnPaint();
 	}
+	//
 }
 
 // The system calls this function to obtain the cursor to display while the user drags
@@ -424,8 +443,107 @@ HBRUSH CCampusNavigationSystemDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlCol
 	for (int i = 0; i < NUM_OF_BUILDINGS; i++) {
 		if (pWnd == &m_staticTexts[i]) {
 			pDC->SetBkMode(TRANSPARENT);
+			return hbr;
 		}
 	}
 	// TODO:  Return a different brush if the default is not desired
 	return hbr;
 }
+void CCampusNavigationSystemDlg::OnDblclkBuilding1()
+{
+	// TODO: Add your control notification handler code here
+	m_staticTexts[0].OpenDialog(m_locationsName, 0);
+}
+void CCampusNavigationSystemDlg::OnDblclkBuilding2()
+{
+	// TODO: Add your control notification handler code here
+	m_staticTexts[1].OpenDialog(m_locationsName, 1);
+}
+void CCampusNavigationSystemDlg::OnDblclkBuilding3()
+{
+	// TODO: Add your control notification handler code here
+	m_staticTexts[2].OpenDialog(m_locationsName, 2);
+}
+void CCampusNavigationSystemDlg::OnDblclkBuilding4()
+{
+	// TODO: Add your control notification handler code here
+	m_staticTexts[3].OpenDialog(m_locationsName, 3);
+}
+void CCampusNavigationSystemDlg::OnDblclkBuilding5()
+{
+	// TODO: Add your control notification handler code here
+	m_staticTexts[4].OpenDialog(m_locationsName, 4);
+}
+void CCampusNavigationSystemDlg::OnDblclkBuilding6()
+{
+	// TODO: Add your control notification handler code here
+	m_staticTexts[5].OpenDialog(m_locationsName, 5);
+}
+void CCampusNavigationSystemDlg::OnDblclkBuilding7()
+{
+	// TODO: Add your control notification handler code here
+	m_staticTexts[6].OpenDialog(m_locationsName, 6);
+}
+void CCampusNavigationSystemDlg::OnDblclkBuilding8()
+{
+	// TODO: Add your control notification handler code here
+	m_staticTexts[7].OpenDialog(m_locationsName, 7);
+}
+void CCampusNavigationSystemDlg::OnDblclkBuilding9()
+{
+	// TODO: Add your control notification handler code here
+	m_staticTexts[8].OpenDialog(m_locationsName, 8);
+}
+void CCampusNavigationSystemDlg::OnDblclkBuilding10()
+{
+	// TODO: Add your control notification handler code here
+	m_staticTexts[9].OpenDialog(m_locationsName, 9);
+}
+void CCampusNavigationSystemDlg::OnDblclkBuilding11()
+{
+	// TODO: Add your control notification handler code here
+	m_staticTexts[10].OpenDialog(m_locationsName, 10);
+}
+void CCampusNavigationSystemDlg::OnDblclkBuilding12()
+{
+	// TODO: Add your control notification handler code here
+	m_staticTexts[11].OpenDialog(m_locationsName, 11);
+}
+void CCampusNavigationSystemDlg::OnDblclkBuilding13()
+{
+	// TODO: Add your control notification handler code here
+	m_staticTexts[12].OpenDialog(m_locationsName, 12);
+}
+void CCampusNavigationSystemDlg::OnDblclkBuilding14()
+{
+	// TODO: Add your control notification handler code here
+	m_staticTexts[13].OpenDialog(m_locationsName, 13);
+}
+void CCampusNavigationSystemDlg::OnDblclkBuilding15()
+{
+	// TODO: Add your control notification handler code here
+	m_staticTexts[14].OpenDialog(m_locationsName, 14);
+}
+void CCampusNavigationSystemDlg::OnDblclkBuilding16()
+{
+	// TODO: Add your control notification handler code here
+	m_staticTexts[15].OpenDialog(m_locationsName, 15);
+}
+void CCampusNavigationSystemDlg::OnDblclkBuilding17()
+{
+	// TODO: Add your control notification handler code here
+	m_staticTexts[16].OpenDialog(m_locationsName, 16);
+}
+void CCampusNavigationSystemDlg::OnDblclkBuilding18()
+{
+	// TODO: Add your control notification handler code here
+	m_staticTexts[17].OpenDialog(m_locationsName, 17);
+}
+void CCampusNavigationSystemDlg::OnDblclkBuilding19()
+{
+	// TODO: Add your control notification handler code here
+	m_staticTexts[18].OpenDialog(m_locationsName, 18);
+}
+
+
+
