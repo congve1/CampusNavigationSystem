@@ -260,5 +260,17 @@
     <Image Include="res\19-3.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\campus.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\campus_1.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="C:\Users\MeiZiNiHao\Desktop\The navigation system of upc\project\res\a.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="C:\Users\MeiZiNiHao\Desktop\The navigation system of upc\project\res\icon1.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

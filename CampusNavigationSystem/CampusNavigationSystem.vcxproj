@@ -143,6 +143,8 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\MAP\map2d.png" />
+    <Image Include="C:\Users\MeiZiNiHao\Desktop\The navigation system of upc\project\res\a.ico" />
+    <Image Include="C:\Users\MeiZiNiHao\Desktop\The navigation system of upc\project\res\icon1.ico" />
     <Image Include="res\1.bmp" />
     <Image Include="res\10-1.bmp" />
     <Image Include="res\10-2.bmp" />
@@ -185,7 +187,9 @@
     <Image Include="res\9-2.bmp" />
     <Image Include="res\bitmap1.bmp" />
     <Image Include="res\bitmap2.bmp" />
+    <Image Include="res\campus.bmp" />
     <Image Include="res\CampusNavigationSystem.ico" />
+    <Image Include="res\campus_1.ico" />
     <Image Include="res\map.bmp" />
     <Image Include="res\map1.bmp" />
     <Image Include="res\map2d.bmp" />
