@@ -443,7 +443,8 @@ HBRUSH CCampusNavigationSystemDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlCol
 	for (int i = 0; i < NUM_OF_BUILDINGS; i++) {
 		if (pWnd == &m_staticTexts[i]) {
 			pDC->SetBkMode(TRANSPARENT);
-			return hbr;
+			pDC->SetTextColor(RGB(196, 27,27));
+			return (HBRUSH)GetStockObject(NULL_BRUSH);
 		}
 	}
 	// TODO:  Return a different brush if the default is not desired
