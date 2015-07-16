@@ -17,9 +17,9 @@ void CMyMenu::MeasureItem(LPMEASUREITEMSTRUCT lpMeasureItemStruct)
 }
 void CMyMenu::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 {
-	CRect rect = lpDrawItemStruct->rcItem;
+	CRect rect = lpDrawItemStruct->rcItem;//rcItem制定了被绘制的矩形区域
 	CDC dc;
-	dc.Attach(lpDrawItemStruct->hDC);
+	dc.Attach(lpDrawItemStruct->hDC);//将lpDrawItemStruct结构体中的hDc与dc绑定
 	dc.FillSolidRect(rect, RGB(240, 240, 240));
 	CFont font;
 	font.CreatePointFont(140, _T("微软雅黑"));//创建字体
@@ -30,7 +30,7 @@ void CMyMenu::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 		dc.FillSolidRect(rect, RGB(80, 89, 202));		
 	}
 	dc.SetTextColor(RGB(213, 25, 0));//设置文本颜色
-	dc.DrawText(*pText, rect, DT_VCENTER | DT_CENTER | DT_SINGLELINE);
+	dc.DrawText(*pText, rect, DT_VCENTER | DT_CENTER | DT_SINGLELINE);//设置绘制方式
 	dc.Detach();
 
 }

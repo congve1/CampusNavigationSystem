@@ -111,12 +111,14 @@
     <ClInclude Include="InfoDialog.h" />
     <ClInclude Include="MyMenu.h" />
     <ClInclude Include="MyPictureControl.h" />
+    <ClInclude Include="MyScrollView.h" />
     <ClInclude Include="MyStaticText.h" />
     <ClInclude Include="ReadOnlyEdit.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="StartDialog.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="ZoomPicDialog.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CampusInfoDialog.cpp" />
@@ -127,6 +129,7 @@
     <ClCompile Include="InfoDialog.cpp" />
     <ClCompile Include="MyMenu.cpp" />
     <ClCompile Include="MyPictureControl.cpp" />
+    <ClCompile Include="MyScrollView.cpp" />
     <ClCompile Include="MyStaticText.cpp" />
     <ClCompile Include="ReadOnlyEdit.cpp" />
     <ClCompile Include="StartDialog.cpp" />
@@ -134,6 +137,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="ZoomPicDialog.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="CampusNavigationSystem.rc" />
@@ -194,6 +198,7 @@
     <Image Include="res\map1.bmp" />
     <Image Include="res\map2d.bmp" />
     <Image Include="res\map2d.png" />
+    <Image Include="res\map3d.bmp" />
     <Image Include="res\png1.png" />
     <Image Include="res\无标题.bmp" />
   </ItemGroup>

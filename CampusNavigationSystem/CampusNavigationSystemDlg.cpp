@@ -9,6 +9,7 @@
 #include "afxdialogex.h"
 #include "StartDialog.h"
 #include "EndDialog.h"
+#include "ZoomPicDialog.h"
 #include <fstream>
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -129,6 +130,7 @@ BEGIN_MESSAGE_MAP(CCampusNavigationSystemDlg, CDialog)
 	ON_STN_DBLCLK(IDC_Building7, &CCampusNavigationSystemDlg::OnDblclkBuilding7)
 	ON_STN_DBLCLK(IDC_Building8, &CCampusNavigationSystemDlg::OnDblclkBuilding8)
 	ON_STN_DBLCLK(IDC_Building9, &CCampusNavigationSystemDlg::OnDblclkBuilding9)
+	ON_COMMAND(ID_MAP3D, &CCampusNavigationSystemDlg::OnMap3d)
 END_MESSAGE_MAP()
 
 
@@ -177,6 +179,7 @@ BOOL CCampusNavigationSystemDlg::OnInitDialog()
 	for (int i = 0; i < NUM_OF_BUILDINGS; i++) {
 		m_staticTexts[i].SetFont();
 	}
+	ModifyStyle(WS_THICKFRAME,0,SWP_FRAMECHANGED | SWP_DRAWFRAME);
 	std::fstream file;
 	file.open("LocationsName.txt", std::ios::in);
 	if (file.is_open()) {
@@ -344,6 +347,16 @@ void CCampusNavigationSystemDlg::OnClickedBtnCalRoute()
 void CCampusNavigationSystemDlg::printRoute(vector<int> & nodes, CClientDC * dc)
 {
 	bool toLine = false;
+	CPen pen;//ÉèÖÃ»­±Ê
+	pen.CreatePen(PS_SOLID, 2 , RGB(100, 100, 100));	
+	CBrush brush;
+	brush.CreateSolidBrush(RGB(0, 0, 255));
+	CBrush * pOldBrush = dc->SelectObject(&brush);
+	dc->Ellipse(m_coordinates[nodes[nodes.size() - 1]].x - 6,
+				m_coordinates[nodes[nodes.size() - 1]].y - 6,
+				m_coordinates[nodes[nodes.size() - 1]].x + 6,
+				m_coordinates[nodes[nodes.size() - 1]].y + 6);
+	CPen * pOldPen = dc->SelectObject(&pen);
 	for (int i = nodes.size() - 1; i >= 0; i--) {
 		if (toLine) {
 			dc->LineTo(m_coordinates[nodes[i]]);
@@ -355,6 +368,18 @@ void CCampusNavigationSystemDlg::printRoute(vector<int> & nodes, CClientDC * dc)
 		if (i != 0)
 			Sleep(1);
 	}
+	dc->SelectObject(pOldPen);
+	pen.DeleteObject();
+	dc->SelectObject(pOldBrush);
+	brush.DeleteObject();
+	brush.CreateSolidBrush(RGB(0,255,0));
+	pOldBrush = dc->SelectObject(&brush);
+	dc->Ellipse(m_coordinates[nodes[0]].x -	6,
+				m_coordinates[nodes[0]].y - 6,
+				m_coordinates[nodes[0]].x + 6,
+				m_coordinates[nodes[0]].y + 6);
+	dc->SelectObject(pOldBrush);
+	brush.DeleteObject();
 }
 void CCampusNavigationSystemDlg::clearRoute(vector<int> nodes,CClientDC * dc)
 {
@@ -545,6 +570,9 @@ void CCampusNavigationSystemDlg::OnDblclkBuilding19()
 	// TODO: Add your control notification handler code here
 	m_staticTexts[18].OpenDialog(m_locationsName, 18);
 }
-
-
-
+void CCampusNavigationSystemDlg::OnMap3d()
+{
+	// TODO: Add your command handler code here
+	CZoomPicDialog dlg;
+	dlg.DoModal();
+}

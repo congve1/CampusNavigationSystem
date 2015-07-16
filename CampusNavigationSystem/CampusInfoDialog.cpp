@@ -71,6 +71,7 @@ BOOL CCampusInfoDialog::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 	// TODO:  Add extra initialization here
+	ModifyStyle(WS_THICKFRAME, 0, SWP_FRAMECHANGED | SWP_DRAWFRAME);
 	fstream file;
 	TCITEM item;
 	item.mask = TCIF_TEXT;

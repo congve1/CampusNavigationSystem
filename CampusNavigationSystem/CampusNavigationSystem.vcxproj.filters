@@ -60,6 +60,12 @@
     <ClInclude Include="MyStaticText.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ZoomPicDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyScrollView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CampusNavigationSystem.cpp">
@@ -96,6 +102,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MyStaticText.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZoomPicDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyScrollView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -270,6 +282,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="C:\Users\MeiZiNiHao\Desktop\The navigation system of upc\project\res\icon1.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\map3d.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

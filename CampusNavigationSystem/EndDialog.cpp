@@ -72,6 +72,7 @@ BOOL CEndDialog::OnInitDialog()
 	CDialog::OnInitDialog();
 
 	// TODO:  Add extra initialization here
+	ModifyStyle(WS_THICKFRAME, 0, SWP_FRAMECHANGED | SWP_DRAWFRAME);
 	CComboBox * comobox = (CComboBox *)GetDlgItem(IDC_CMB_END_POINT);
 	for (int i = 0; i < m_locationName.size(); i++) {
 		comobox->AddString(m_locationName[i]);

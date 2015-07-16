@@ -40,7 +40,7 @@ END_MESSAGE_MAP()
 BOOL CInfoDialog::OnInitDialog()
 {
 	CDialog::OnInitDialog();
-
+	ModifyStyle(WS_THICKFRAME, 0, SWP_FRAMECHANGED | SWP_DRAWFRAME);
 	// TODO:  Add extra initialization here
 	m_Font.CreatePointFont(140, _T("Î¢ÈíÑÅºÚ"));
 	m_editSimpleInfo.SetFont(&m_Font);
