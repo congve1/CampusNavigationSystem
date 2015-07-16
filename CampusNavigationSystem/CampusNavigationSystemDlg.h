@@ -79,7 +79,6 @@ public:
 	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
 	afx_msg void OnDblclkBuilding1();
 	afx_msg void OnDblclkBuilding10();
-//	afx_msg void OnClickedBuilding11();
 	afx_msg void OnDblclkBuilding11();
 	afx_msg void OnDblclkBuilding12();
 	afx_msg void OnDblclkBuilding13();
@@ -97,5 +96,4 @@ public:
 	afx_msg void OnDblclkBuilding7();
 	afx_msg void OnDblclkBuilding8();
 	afx_msg void OnDblclkBuilding9();
-	afx_msg void OnMap3d();
 };

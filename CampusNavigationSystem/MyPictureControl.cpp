@@ -54,4 +54,5 @@ void CMyPictureControl::OnPaint()
 	dc.StretchBlt(m_rect.left, m_rect.top, m_rect.Width() - 12, m_rect.Height() - 20, &memdc, 0, 0,
 				  bmp.bmWidth, bmp.bmHeight, SRCCOPY);
 	memdc.SelectObject(&pOldBmp);//»¹Ô­»­Ë¢
+	memdc.DeleteDC();
 }

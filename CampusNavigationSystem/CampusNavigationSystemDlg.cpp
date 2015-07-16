@@ -9,7 +9,6 @@
 #include "afxdialogex.h"
 #include "StartDialog.h"
 #include "EndDialog.h"
-#include "ZoomPicDialog.h"
 #include <fstream>
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -130,7 +129,6 @@ BEGIN_MESSAGE_MAP(CCampusNavigationSystemDlg, CDialog)
 	ON_STN_DBLCLK(IDC_Building7, &CCampusNavigationSystemDlg::OnDblclkBuilding7)
 	ON_STN_DBLCLK(IDC_Building8, &CCampusNavigationSystemDlg::OnDblclkBuilding8)
 	ON_STN_DBLCLK(IDC_Building9, &CCampusNavigationSystemDlg::OnDblclkBuilding9)
-	ON_COMMAND(ID_MAP3D, &CCampusNavigationSystemDlg::OnMap3d)
 END_MESSAGE_MAP()
 
 
@@ -256,7 +254,7 @@ void CCampusNavigationSystemDlg::OnPaint()
 	{
 		CDialog::OnPaint();
 	}
-	//
+	
 }
 
 // The system calls this function to obtain the cursor to display while the user drags
@@ -383,7 +381,9 @@ void CCampusNavigationSystemDlg::printRoute(vector<int> & nodes, CClientDC * dc)
 }
 void CCampusNavigationSystemDlg::clearRoute(vector<int> nodes,CClientDC * dc)
 {
-	InvalidateRect(NULL, FALSE);
+	CRect rect;
+	GetDlgItem(IDC_LOADMAP)->GetClientRect(rect);
+	InvalidateRect(rect,false);
 	UpdateWindow();
 }
 void CCampusNavigationSystemDlg::OnCampusInfo()
@@ -569,10 +569,4 @@ void CCampusNavigationSystemDlg::OnDblclkBuilding19()
 {
 	// TODO: Add your control notification handler code here
 	m_staticTexts[18].OpenDialog(m_locationsName, 18);
-}
-void CCampusNavigationSystemDlg::OnMap3d()
-{
-	// TODO: Add your command handler code here
-	CZoomPicDialog dlg;
-	dlg.DoModal();
 }
