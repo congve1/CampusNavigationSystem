@@ -13,10 +13,7 @@
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
-
-
 // CAboutDlg dialog used for App About
-
 class CAboutDlg : public CDialog
 {
 public:
@@ -27,7 +24,6 @@ public:
 
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-
 // Implementation
 protected:
 	DECLARE_MESSAGE_MAP()	
@@ -129,6 +125,7 @@ BEGIN_MESSAGE_MAP(CCampusNavigationSystemDlg, CDialog)
 	ON_STN_DBLCLK(IDC_Building7, &CCampusNavigationSystemDlg::OnDblclkBuilding7)
 	ON_STN_DBLCLK(IDC_Building8, &CCampusNavigationSystemDlg::OnDblclkBuilding8)
 	ON_STN_DBLCLK(IDC_Building9, &CCampusNavigationSystemDlg::OnDblclkBuilding9)
+	ON_COMMAND(ID_CLEAR, &CCampusNavigationSystemDlg::OnClear)
 END_MESSAGE_MAP()
 
 
@@ -364,7 +361,7 @@ void CCampusNavigationSystemDlg::printRoute(vector<int> & nodes, CClientDC * dc)
 			toLine = true;
 		}
 		if (i != 0)
-			Sleep(1);
+			Sleep(150);
 	}
 	dc->SelectObject(pOldPen);
 	pen.DeleteObject();
@@ -447,8 +444,6 @@ void CCampusNavigationSystemDlg::OnMeasureItem(int nIDCtl, LPMEASUREITEMSTRUCT l
 	}else
 	CDialog::OnMeasureItem(nIDCtl, lpMeasureItemStruct);
 }
-
-
 void CCampusNavigationSystemDlg::OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct)
 {
 	// TODO: Add your message handler code here and/or call default
@@ -458,7 +453,6 @@ void CCampusNavigationSystemDlg::OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawI
 	} else
 	CDialog::OnDrawItem(nIDCtl, lpDrawItemStruct);
 }
-
 
 HBRUSH CCampusNavigationSystemDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 {
@@ -569,4 +563,17 @@ void CCampusNavigationSystemDlg::OnDblclkBuilding19()
 {
 	// TODO: Add your control notification handler code here
 	m_staticTexts[18].OpenDialog(m_locationsName, 18);
+}
+
+void CCampusNavigationSystemDlg::OnClear()
+{
+	// TODO: Add your command handler code here
+	GetDlgItem(IDC_EDIT_MIN_LENGTH)->SetWindowTextW(_T(""));
+	GetDlgItem(IDC_EDIT_MIN_ROUTE)->SetWindowTextW(_T(""));
+	CComboBox * start = (CComboBox *)GetDlgItem(IDC_CMB_START_POINT);
+	start->SetCurSel(-1);
+	CComboBox * ending = (CComboBox *)GetDlgItem(IDC_CMB_END_POINT);
+	ending->SetCurSel(-1);
+	InvalidateRect(NULL, false);
+	UpdateWindow();
 }

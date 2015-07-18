@@ -96,4 +96,5 @@ public:
 	afx_msg void OnDblclkBuilding7();
 	afx_msg void OnDblclkBuilding8();
 	afx_msg void OnDblclkBuilding9();
+	afx_msg void OnClear();
 };
